@@ -1,21 +1,19 @@
 package com.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 @Entity
 public class Post {
 	@Id
 	@GeneratedValue
 	private Long id;
-	
-	@ManyToOne
-	@JoinColumn(name = "account_id")
-	private Account account;
-	
+
+	@Column(name = "account_id")
+	private Long accountId;
+
 	private String content;
 
 	public Long getId() {
@@ -26,14 +24,6 @@ public class Post {
 		this.id = id;
 	}
 
-	public Account getAccount() {
-		return account;
-	}
-
-	public void setAccount(Account account) {
-		this.account = account;
-	}
-
 	public String getContent() {
 		return content;
 	}
@@ -42,9 +32,17 @@ public class Post {
 		this.content = content;
 	}
 
+	public Long getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(Long accountId) {
+		this.accountId = accountId;
+	}
+
 	@Override
 	public String toString() {
-		return "Post [id=" + id + ", account=" + account + ", content=" + content + "]";
+		return "Post [id=" + id + ", accountId=" + accountId + ", content=" + content + "]";
 	}
-	
+
 }
