@@ -8,5 +8,11 @@
 </head>
 <body>
 <h1>환영합니다.</h1>
+
+
+<a href="/admin">어드민</a> <br>
+<a href="/users">user</a><br><br>
+<a href="/registerform">회원가입</a><br>
+
 </body>
 </html>
