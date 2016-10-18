@@ -13,10 +13,14 @@
 	<h1>어드민 입니다.</h1>
 	<br>
 	<sec:authorize access="isAuthenticated()">
-		<sec:authentication property="principal.nickName" /> 님 안녕하세요, 당신은 어드민 유저 입니다. <br>
+		<sec:authentication property="principal.nickName" /> 님 안녕하세요. <br>
+		<sec:authorize access="hasRole('USER')"> 일반 유저 입니다. <br></sec:authorize>
+		<sec:authorize access="hasRole('ADMIN')"> 관리자 입니다. <br></sec:authorize>
 	</sec:authorize>
 
 
+	<br>
+	<a href="/">메인화면으로이동</a>
 	<br>
 	<a href="/users">user</a>
 	<br>

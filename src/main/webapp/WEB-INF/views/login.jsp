@@ -28,6 +28,9 @@
 		</p>
 		<sec:csrfInput />
 		<button type="submit" class="btn">Log in</button>
+		<p>
+		Remember Me : <input type="checkbox" name="remember-me" value="true" checked="checked">
+		</p>
 	</form>
 </body>
 </html>

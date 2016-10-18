@@ -1,10 +1,12 @@
 package com.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
 
 import com.domain.UserDetialsServiceImpl;
 
@@ -15,6 +17,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Autowired
 	UserDetialsServiceImpl userDetailsService;
+	
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -28,7 +31,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		                        .antMatchers("/**").permitAll();
 		
 		http.formLogin().loginPage("/login").permitAll();
-		http.rememberMe().key(REMEMBER_ME);
+		http.rememberMe().key(REMEMBER_ME).rememberMeServices(tokenBasedRememberMeServices());
 		http.logout().logoutSuccessUrl("/");
+	}
+	
+	@Bean
+	public TokenBasedRememberMeServices tokenBasedRememberMeServices(){
+		TokenBasedRememberMeServices tokenBasedRememberMeServices = new TokenBasedRememberMeServices(REMEMBER_ME, userDetailsService);
+		return tokenBasedRememberMeServices;
 	}
 }

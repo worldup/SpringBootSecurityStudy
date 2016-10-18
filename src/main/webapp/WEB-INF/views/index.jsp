@@ -13,6 +13,8 @@
 	<h1>환영합니다.</h1>
 	<sec:authorize access="isAuthenticated()">
 		<sec:authentication property="principal.nickName" /> 님 안녕하세요. <br>
+		<sec:authorize access="hasRole('USER')"> 일반 유저 입니다. <br></sec:authorize>
+		<sec:authorize access="hasRole('ADMIN')"> 관리자 입니다. <br></sec:authorize>
 		<c:url var="logoutUrl" value="/logout" />
 		<form action="${logoutUrl}" method="post">
 			<input type="submit" value="로그아웃" />
@@ -32,6 +34,7 @@
 		<a href="/registrationForm">회원가입</a>
 		<br>
 	</sec:authorize>
-
+	<br>
+	<sec:authorize access="isRememberMe()"> 쿠키로 로그인 했습니다.</sec:authorize>
 </body>
 </html>

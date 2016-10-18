@@ -13,7 +13,9 @@
 	<h1>유저입니다.</h1>
 
 	<sec:authorize access="isAuthenticated()">
-		<sec:authentication property="principal.nickName" /> 님 안녕하세요, 당신은 일반  유저 입니다. <br>
+		<sec:authentication property="principal.nickName" /> 님 안녕하세요, <br>
+		<sec:authorize access="hasRole('USER')"> 일반 유저 입니다. <br></sec:authorize>
+		<sec:authorize access="hasRole('ADMIN')"> 관리자 입니다. <br></sec:authorize>
 		<c:url var="logoutUrl" value="/logout" />
 		<form action="${logoutUrl}" method="post">
 			<input type="submit" value="로그아웃" />
@@ -22,7 +24,9 @@
 		<br>
 		<br>
 	</sec:authorize>
-
+	<br>
+	<a href="/">메인화면으로이동</a>
+	<br>
 	<a href="/admin">어드민</a>
 	<br>
 	<a href="/posts/">문서 보기</a>
