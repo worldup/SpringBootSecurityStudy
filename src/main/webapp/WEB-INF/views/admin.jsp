@@ -21,7 +21,11 @@
 	<a href="/users">user</a>
 	<br>
 	<br>
-	<a href="/registerform">회원가입</a>
+	<c:url var="logoutUrl" value="/logout" />
+	<form action="${logoutUrl}" method="post">
+		<input type="submit" value="로그아웃" />
+		<sec:csrfInput/>
+	</form>
 	<br>
 </body>
 </html>

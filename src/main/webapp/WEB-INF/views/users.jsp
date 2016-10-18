@@ -14,6 +14,13 @@
 
 	<sec:authorize access="isAuthenticated()">
 		<sec:authentication property="principal.nickName" /> 님 안녕하세요, 당신은 일반  유저 입니다. <br>
+		<c:url var="logoutUrl" value="/logout" />
+		<form action="${logoutUrl}" method="post">
+			<input type="submit" value="로그아웃" />
+			<sec:csrfInput />
+		</form>
+		<br>
+		<br>
 	</sec:authorize>
 
 	<a href="/admin">어드민</a>
