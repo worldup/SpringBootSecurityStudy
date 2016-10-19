@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.domain.Account;
 import com.domain.Role;
@@ -18,6 +19,9 @@ public class DemoApplication {
 	
 	@Autowired
 	RoleRepository roleRepository;
+	
+	@Autowired
+	PasswordEncoder passwordEncoder;
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
@@ -38,7 +42,7 @@ public class DemoApplication {
 			Account accountUser = new Account();
 			accountUser.setEmail("yihoyoung1@nate.com");
 			accountUser.setNickName("갓 제임스");
-			accountUser.setPassword("1234");
+			accountUser.setPassword(passwordEncoder.encode("1234"));
 			accountUser = accountRepository.save(accountUser);
 			accountUser.addRole(roleUser);
 			accountRepository.save(accountUser);
@@ -46,7 +50,7 @@ public class DemoApplication {
 			Account accountAdmin = new Account();
 			accountAdmin.setEmail("yihoyoung2@nate.com");
 			accountAdmin.setNickName("갓 제임스");
-			accountAdmin.setPassword("1234");
+			accountAdmin.setPassword(passwordEncoder.encode("1234"));
 			accountAdmin = accountRepository.save(accountAdmin);
 			accountAdmin.addRole(roleUser);
 			accountAdmin.addRole(roleAdmin);
